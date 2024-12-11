@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>HTML Reference</title>
+<link rel="stylesheet" href="./assets/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="title" property="og:title" content="W3Schools.com">
+<base target="_blank">
+<script>
+function filterSearch() {
+  var a, l, b, i, j, c, ahref, s, tr, td;
+    c = document.getElementById("searchstring").value.toUpperCase();
+    a = document.querySelectorAll(".ws-table-all");
+    for (j = 0; j < a.length; j++) {
+      s = 0;
+      tr = a[j].getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          elementText = td.innerText || td.textContent;
+          if (elementText.toUpperCase().indexOf(c) > -1) {
+            tr[i].style.display = "";
+            s = 1;
+          }else {
+          tr[i].style.display = "none";
+        }
+        }
+        if (i == (tr.length - 1)) {
+          if (s == 0) {
+            a[j].style.display = "none";
+          } else {
+            a[j].style.display = "";
+            fixStripes(tr);
+          }
+        }
+      }
+    }
+  }
+
+</script>
+
+</head>
+<body>
+
+
+
+<script>
+activate_subtopnav_scroll = 0;
+from_scrollpos = -1;
+current_scrollpos = -1;
+goto_tut = 1;
+function startscrolling_subtopnav(event) {
+  event.preventDefault();
+  from_scrollpos = event.clientX;
+  activate_subtopnav_scroll = 1;
+}
+function scrolling_subtopnav(event) {
+  current_scrollpos = event.clientX;
+  if (current_scrollpos == from_scrollpos) return false;
+  event.preventDefault();
+  if (event.buttons == 0) return false;
+  var scrollspeed;
+  if (activate_subtopnav_scroll == 1) {
+    goto_tut = 0;
+    scrollspeed = current_scrollpos - from_scrollpos;
+    scrollspeed = Math.abs(scrollspeed);
+    if (current_scrollpos < from_scrollpos) {
+     document.getElementById("scroll_left_btn").style.display = "block";     
+     document.getElementById("subtopnav").scrollLeft += scrollspeed;        
+    } else {
+      document.getElementById("subtopnav").scrollLeft -= scrollspeed;        
+    }
+    scrollbtn_visible();
+    from_scrollpos = current_scrollpos;
+  }
+}
+function endscrolling_subtopnav(event) {
+  event.preventDefault();
+  activate_subtopnav_scroll = 0;
+  from_scrollpos = -1;
+  current_scrollpos = -1;
+}
+function pellessii(event) {
+  if (goto_tut == 0) {
+    event.preventDefault();  
+    goto_tut = 1;
+    return false;
+  }
+}
+var scrollspeed = 1;
+var scrollinterval
+function scrollmenow(n) {
+  scrollinterval = window.setInterval(function() {
+    scrollspeed = scrollspeed * 1.1;
+    if (scrollspeed > 10) {scrollspeed = 10;}
+    if (n == 1) {
+      document.getElementById("subtopnav").scrollLeft += scrollspeed;  
+    } else {
+      document.getElementById("subtopnav").scrollLeft -= scrollspeed;  
+      
+    }
+    scrollbtn_visible();
+  }, 10);
+}
+
+var p_s_l = 0;
+var x_s_l = 0;
+function scrollbtn_visible() {
+  var c_s_l = document.getElementById("subtopnav").scrollLeft;
+  if (c_s_l < 1) {
+    document.getElementById("scroll_left_btn").style.display = "none";    
+  } else {
+    document.getElementById("scroll_left_btn").style.display = "block";    
+  }
+  if (c_s_l > 1 && c_s_l == p_s_l) {
+    x_s_l++;
+  } else {
+    x_s_l = 0;  
+  }
+  if (x_s_l > 3) {
+    document.getElementById("scroll_right_btn").style.display = "none";    
+  } else {
+    document.getElementById("scroll_right_btn").style.display = "block";  
+  }
+  p_s_l = document.getElementById("subtopnav").scrollLeft;
+}
+
+function stopscrollmenow() {
+  scrollspeed = 1;
+  window.clearInterval(scrollinterval);
+}
+
+//window.addEventListener("load", subtopnav_intoview);
+
+
+function amIIntoView(x, y) {
+  var a = x.scrollLeft;
+  var b = a + window.innerWidth;
+  var ytop = y.offsetLeft;
+  var c = y.offsetWidth;
+  var d = 0;
+  if (document.getElementById("btn_container_subtopnav")) d = document.getElementById("btn_container_subtopnav").offsetWidth;
+  var ybottom = ytop + c + d + 20;
+  return ((ybottom <= b) && (ytop >= a));
+}
+
+</script>
+<script>
+subtopnav_intoview();
+</script>
+
+
+<h1>Tags HTML</h1>
+<input type="text" id="searchstring" name="search" placeholder="Search.." oninput="filterSearch()">
+<div id="htmltags">
+
+<table class="ws-table-all" id="table1">
+<tr>
+<th style="width:25%">Tag</th>
+<th>Descrição</th>
+</tr>
+<tr>
+<td><a href="#comentario">&lt;!--...--&gt;</a></td>
+<td>Define um comentário</td>
+</tr>
+<tr>
+<td><a href="#doctype">&lt;!DOCTYPE&gt;</a>&nbsp;</td>
+<td>Define o tipo de documento</td>
+</tr>
+<tr>
+<td><a href="#a">&lt;a&gt;</a></td>
+<td>Define um hyperlink</td>
+</tr>
+<tr>
+<td><a href="#abbr">&lt;abbr&gt;</a></td>
+<td>Define uma abreviação ou um acrônimo</td>
+</tr>
+<tr>
+<td><a href="#address">&lt;address&gt;</a></td>
+<td>Define as informações de contato do autor/proprietário de um documento</td>
+</tr>
+<tr>
+<td><a href="#area">&lt;area&gt;</a></td>
+<td>Define uma área dentro de um mapa de imagem</td>
+</tr>
+<tr>
+<td><a href="#article">&lt;article&gt;</a></td>
+<td>Define um artigo</td>
+</tr>
+<tr>
+<td><a href="#aside">&lt;aside&gt;</a></td>
+<td>Define conteúdo à parte do conteúdo principal da página</td>
+</tr>
+<tr>
+<td><a href="#audio">&lt;audio&gt;</a></td>
+<td>Define conteúdo de áudio embutido</td>
+</tr>
+<tr>
+<td><a href="#b">&lt;b&gt;</a></td>
+<td>Define texto em negrito</td>
+</tr>
+<tr>
+<td><a href="#base">&lt;base&gt;</a></td>
+<td>Especifica a URL/base para todos os URLs relativos no documento</td>
+</tr>
+<tr>
+<td><a href="#bdi">&lt;bdi&gt;</a></td>
+<td>Isola uma parte de texto que pode ser formatada em uma direção diferente do texto ao seu redor</td>
+</tr>
+<tr>
+<td><a href="#bdo">&lt;bdo&gt;</a></td>
+<td>Substitui a direção de texto atual</td>
+</tr>
+<tr>
+<td><a href="#blockquote">&lt;blockquote&gt;</a></td>
+<td>Define uma seção citada de outra fonte</td>
+</tr>
+<tr>
+<td><a href="#body">&lt;body&gt;</a></td>
+<td>Define o corpo do documento</td>
+</tr>
+<tr>
+<td><a href="#br">&lt;br&gt;</a></td>
+<td>Define uma quebra de linha simples</td>
+</tr>
+<tr>
+<td><a href="#button">&lt;button&gt;</a></td>
+<td>Define um botão clicável</td>
+</tr>
+<tr>
+<td><a href="#canvas">&lt;canvas&gt;</a></td>
+<td>Usado para desenhar gráficos, em tempo real, via scripts (geralmente JavaScript)</td>
+</tr>
+<tr>
+<td><a href="#caption">&lt;caption&gt;</a></td>
+<td>Define a legenda de uma tabela</td>
+</tr>
+<tr>
+<td><a href="#cite">&lt;cite&gt;</a></td>
+<td>Define o título de uma obra</td>
+</tr>
+<tr>
+<td><a href="#code">&lt;code&gt;</a></td>
+<td>Define um trecho de código de computador</td>
+</tr>
+<tr>
+<td><a href="#col">&lt;col&gt;</a></td>
+<td>Especifica as propriedades das colunas dentro de um elemento &lt;colgroup&gt;</td>
+</tr>
+<tr>
+<td><a href="#colgroup">&lt;colgroup&gt;</a></td>
+<td>Especifica um grupo de uma ou mais colunas em uma tabela para formatação</td>
+</tr>
+<tr>
+<td><a href="#data">&lt;data&gt;</a></td>
+<td>Adiciona uma tradução legível por máquina de um determinado conteúdo</td>
+</tr>
+<tr>
+<td><a href="#datalist">&lt;datalist&gt;</a></td>
+<td>Especifica uma lista de opções predefinidas para controles de entrada</td>
+</tr>
+<tr>
+<td><a href="#dd">&lt;dd&gt;</a></td>
+<td>Define uma descrição/valor de um termo em uma lista de descrição</td>
+</tr>
+<tr>
+<td><a href="#del">&lt;del&gt;</a></td>
+<td>Define texto que foi deletado de um documento</td>
+</tr>
+<tr>
+<td><a href="#details">&lt;details&gt;</a></td>
+<td>Define detalhes adicionais que o usuário pode ver ou ocultar</td>
+</tr>
+<tr>
+<td><a href="#dfn">&lt;dfn&gt;</a></td>
+<td>Especifica um termo que será definido dentro do conteúdo</td>
+</tr>
+<tr>
+<td><a href="#dialog">&lt;dialog&gt;</a></td>
+<td>Define uma caixa de diálogo ou janela</td>
+</tr>
+<tr>
+<td><a href="#div">&lt;div&gt;</a></td>
+<td>Define uma seção em um documento</td>
+</tr>
+<tr>
+<td><a href="#dl">&lt;dl&gt;</a></td>
+<td>Define uma lista de descrições</td>
+</tr>
+<tr>
+<td><a href="#dt">&lt;dt&gt;</a></td>
+<td>Define um termo/nome em uma lista de descrições</td>
+</tr>
+<tr>
+<td><a href="#em">&lt;em&gt;</a></td>
+<td>Define texto enfatizado</td>
+</tr>
+<tr>
+<td><a href="#embed">&lt;embed&gt;</a></td>
+<td>Define um contêiner para uma aplicação externa</td>
+</tr>
+<tr>
+<td><a href="#fieldset">&lt;fieldset&gt;</a></td>
+<td>Agrupa elementos relacionados em um formulário</td>
+</tr>
+<tr>
+<td class="html5badge"><a href="#figcaption">&lt;figcaption&gt;</a></td>
+<td>Define uma legenda para um elemento &lt;figure&gt;</td>
+</tr>
+<tr>
+<td class="html5badge"><a href="#figure">&lt;figure&gt;</a></td>
+<td>Especifica conteúdo auto-contido</td>
+</tr>
+<tr>
+<td><a href="#footer">&lt;footer&gt;</a></td>
+<td>Define um rodapé para um documento ou seção</td>
+</tr>
+<tr>
+<td><a href="#form">&lt;form&gt;</a></td>
+<td>Define um formulário HTML para entrada de usuário</td>
+</tr>
+<tr>
+<td><a href="#hn">&lt;h1&gt; a &lt;h6&gt;</a></td>
+<td>Define títulos HTML</td>
+</tr>
+<tr>
+<td><a href="#head">&lt;head&gt;</a></td>
+<td>Contém metadados/informações para o documento</td>
+</tr>
+<tr>
+<td><a href="#header">&lt;header&gt;</a></td>
+<td>Define um cabeçalho para um documento ou seção</td>
+</tr>
+<tr>
+<td><a href="#hgroup">&lt;hgroup&gt;</a></td>
+<td>Define um cabeçalho e conteúdo relacionado</td>
+</tr>
+<tr>
+<td><a href="#hr">&lt;hr&gt;</a></td>
+<td>Define uma mudança temática no conteúdo</td>
+</tr>
+<tr>
+<td><a href="#html">&lt;html&gt;</a></td>
+<td>Define a raiz de um documento HTML</td>
+</tr>
+<tr>
+<td><a href="#i">&lt;i&gt;</a></td>
+<td>Define uma parte de texto em voz ou humor alternativo</td>
+</tr>
+<tr>
+<td><a href="#iframe">&lt;iframe&gt;</a></td>
+<td>Define um quadro embutido (inline)</td>
+</tr>
+<tr>
+<td><a href="#img">&lt;img&gt;</a></td>
+<td>Define uma imagem</td>
+</tr>
+<tr>
+<td><a href="#input">&lt;input&gt;</a></td>
+<td>Define um controle de entrada</td>
+</tr>
+<tr>
+<td><a href="#ins">&lt;ins&gt;</a></td>
+<td>Define texto que foi inserido em um documento</td>
+</tr>
+<tr>
+<td><a href="#kbd">&lt;kbd&gt;</a></td>
+<td>Define a entrada do teclado</td>
+</tr>
+<tr>
+<td><a href="#label">&lt;label&gt;</a></td>
+<td>Define um rótulo para um elemento &lt;input&gt;</td>
+</tr>
+<tr>
+<td><a href="#legend">&lt;legend&gt;</a></td>
+<td>Define uma legenda para um elemento &lt;fieldset&gt;</td>
+</tr>
+<tr>
+<td><a href="#li">&lt;li&gt;</a></td>
+<td>Define um item de lista</td>
+</tr>
+<tr>
+<td><a href="#link">&lt;link&gt;</a></td>
+<td>Define o relacionamento entre um documento e um recurso externo (mais utilizado para vincular folhas de estilo)</td>
+</tr>
+<tr>
+<td><a href="#main">&lt;main&gt;</a></td>
+<td>Especifica o conteúdo principal de um documento</td>
+</tr>
+<tr>
+<td><a href="#map">&lt;map&gt;</a></td>
+<td>Define um mapa de imagem</td>
+</tr>
+<tr>
+<td><a href="#mark">&lt;mark&gt;</a></td>
+<td>Define texto destacado</td>
+</tr>
+<tr>
+<td><a href="#menu">&lt;menu&gt;</a></td>
+<td>Define uma lista não ordenada</td>
+</tr>
+<tr>
+<td><a href="#meta">&lt;meta&gt;</a></td>
+<td>Define metadados sobre um documento HTML</td>
+</tr>
+<tr>
+<td><a href="#meter">&lt;meter&gt;</a></td>
+<td>Define uma medição escalar dentro de um intervalo conhecido (um medidor)</td>
+</tr>
+<tr>
+<td><a href="#nav">&lt;nav&gt;</a></td>
+<td>Define links de navegação</td>
+</tr>
+<tr>
+<td><a href="#noscript">&lt;noscript&gt;</a></td>
+<td>Define conteúdo alternativo para usuários que não suportam scripts do lado do cliente</td>
+</tr>
+<tr>
+<td><a href="#object">&lt;object&gt;</a></td>
+<td>Define um contêiner para uma aplicação externa</td>
+</tr>
+<tr>
+<td><a href="#ol">&lt;ol&gt;</a></td>
+<td>Define uma lista ordenada</td>
+</tr>
+<tr>
+<td><a href="#optgroup">&lt;optgroup&gt;</a></td>
+<td>Define um grupo de opções relacionadas em uma lista suspensa</td>
+</tr>
+<tr>
+<td><a href="#option">&lt;option&gt;</a></td>
+<td>Define uma opção em uma lista suspensa</td>
+</tr>
+<tr>
+<td><a href="#output">&lt;output&gt;</a></td>
+<td>Define o resultado de um cálculo</td>
+</tr>
+<tr>
+<td><a href="#p">&lt;p&gt;</a></td>
+<td>Define um parágrafo</td>
+</tr>
+<tr>
+<td><a href="#param">&lt;param&gt;</a></td>
+<td>Define um parâmetro para um objeto</td>
+</tr>
+<tr>
+<td><a href="#picture">&lt;picture&gt;</a></td>
+<td>Define um contêiner para múltiplos recursos de imagem</td>
+</tr>
+<tr>
+<td><a href="#pre">&lt;pre&gt;</a></td>
+<td>Define texto pré-formatado</td>
+</tr>
+<tr>
+<td><a href="#progress">&lt;progress&gt;</a></td>
+<td>Representa o progresso de uma tarefa</td>
+</tr>
+<tr>
+<td><a href="#q">&lt;q&gt;</a></td>
+<td>Define uma citação curta</td>
+</tr>
+<tr>
+<td><a href="#rp">&lt;rp&gt;</a></td>
+<td>Define o que mostrar em navegadores que não suportam anotações Ruby</td>
+</tr>
+<tr>
+<td><a href="#rt">&lt;rt&gt;</a></td>
+<td>Define uma explicação/pronúncia de caracteres (para tipografia asiática)</td>
+</tr>
+<tr>
+<td><a href="#ruby">&lt;ruby&gt;</a></td>
+<td>Define uma anotação ruby (para tipografia asiática)</td>
+</tr>
+<tr>
+<td><a href="#s">&lt;s&gt;</a></td>
+<td>Define texto que não está mais correto</td>
+</tr>
+<tr>
+<td><a href="#samp">&lt;samp&gt;</a></td>
+<td>Define a saída de exemplo de um programa de computador</td>
+</tr>
+<tr>
+<td><a href="#script">&lt;script&gt;</a></td>
+<td>Define um script do lado do cliente</td>
+</tr>
+<tr>
+<td><a href="#search">&lt;search&gt;</a></td>
+<td>Define uma seção de pesquisa</td>
+</tr>
+<tr>
+<td><a href="#section">&lt;section&gt;</a></td>
+<td>Define uma seção em um documento</td>
+</tr>
+<tr>
+<td><a href="#select">&lt;select&gt;</a></td>
+<td>Define uma lista suspensa</td>
+</tr>
+<tr>
+<td><a href="#small">&lt;small&gt;</a></td>
+<td>Define texto menor</td>
+</tr>
+<tr>
+<td><a href="#source">&lt;source&gt;</a></td>
+<td>Define múltiplos recursos de mídia para elementos de mídia (&lt;video&gt; e &lt;audio&gt;)</td>
+</tr>
+<tr>
+<td><a href="#span">&lt;span&gt;</a></td>
+<td>Define uma seção em um documento</td>
+</tr>
+<tr>
+<td><a href="#strong">&lt;strong&gt;</a></td>
+<td>Define texto importante</td>
+</tr>
+<tr>
+<td><a href="#style">&lt;style&gt;</a></td>
+<td>Define informações de estilo para um documento</td>
+</tr>
+<tr>
+<td><a href="#sub">&lt;sub&gt;</a></td>
+<td>Define texto subscrito</td>
+</tr>
+<tr>
+<td><a href="#summary">&lt;summary&gt;</a></td>
+<td>Define um título visível para um elemento &lt;details&gt;</td>
+</tr>
+<tr>
+<td><a href="#sup">&lt;sup&gt;</a></td>
+<td>Define texto sobrescrito</td>
+</tr>
+<tr>
+<td><a href="#svg">&lt;svg&gt;</a></td>
+<td>Define um contêiner para gráficos SVG</td>
+</tr>
+<tr>
+<td><a href="#table">&lt;table&gt;</a></td>
+<td>Define uma tabela</td>
+</tr>
+<tr>
+<td><a href="#tbody">&lt;tbody&gt;</a></td>
+<td>Agrupa o conteúdo do corpo de uma tabela</td>
+</tr>
+<tr>
+<td><a href="#td">&lt;td&gt;</a></td>
+<td>Define uma célula em uma tabela</td>
+</tr>
+<tr>
+<td><a href="#template">&lt;template&gt;</a></td>
+<td>Define um contêiner para conteúdo que deve ser ocultado quando a página é carregada</td>
+</tr>
+<tr>
+<td><a href="#textarea">&lt;textarea&gt;</a></td>
+<td>Define um controle de entrada multilinha (área de texto)</td>
+</tr>
+<tr>
+<td><a href="#tfoot">&lt;tfoot&gt;</a></td>
+<td>Agrupa o conteúdo do rodapé em uma tabela</td>
+</tr>
+<tr>
+<td><a href="#th">&lt;th&gt;</a></td>
+<td>Define uma célula de cabeçalho em uma tabela</td>
+</tr>
+<tr>
+<td><a href="#thead">&lt;thead&gt;</a></td>
+<td>Agrupa o conteúdo do cabeçalho em uma tabela</td>
+</tr>
+<tr>
+<td><a href="#time">&lt;time&gt;</a></td>
+<td>Define um tempo específico (ou data/hora)</td>
+</tr>
+<tr>
+<td><a href="#title">&lt;title&gt;</a></td>
+<td>Define o título do documento</td>
+</tr>
+<tr>
+<td><a href="#tr">&lt;tr&gt;</a></td>
+<td>Define uma linha em uma tabela</td>
+</tr>
+<tr>
+<td><a href="#track">&lt;track&gt;</a></td>
+<td>Define faixas de texto para elementos de mídia (&lt;video&gt; e &lt;audio&gt;)</td>
+</tr>
+<tr>
+<td><a href="#u">&lt;u&gt;</a></td>
+<td>Define texto não articulado e estilizado de maneira diferente do texto normal</td>
+</tr>
+<tr>
+<td><a href="#ul">&lt;ul&gt;</a></td>
+<td>Define uma lista não ordenada</td>
+</tr>
+<tr>
+<td><a href="#var">&lt;var&gt;</a></td>
+<td>Define uma variável</td>
+</tr>
+<tr>
+<td><a href="#video">&lt;video&gt;</a></td>
+<td>Define conteúdo de vídeo embutido</td>
+</tr>
+<tr>
+<td><a href="#wbr">&lt;wbr&gt;</a></td>
+<td>Define uma possível quebra de linha</td>
+</tr>
+</table>
+</div>
+
+
+
+
+
+
+<div class="exemplos">
+  <h2>Exemplos</h2>
+  <p>Os exemplos abaixo demonstram como usar esses elementos:</p>
+
+<div id="htmltags">
+    <table class="ws-table-all" id="table2">
+      <th style="width:25%">Tag</th>
+      <th>Exemplo</th>
+      <tr>
+        <td id="comentario">&lt;!--...--&gt;</td>
+        <td><code>&lt;!Essa linha é um comentário, o browser não o reconhece como conteúdo--&gt;</code>
+        <!-- essa linha também é um comentário e ela realmente não aparece no browser --></td>
+      </tr>
+      <tr>
+        <td id="doctype">&lt;!DOCTYPE&gt;&nbsp;</td>
+        <td><code>&lt;!DOCTYPE html&gt;</code></td>
+      </tr>
+      <tr>
+        <td id="a">&lt;a&gt;</td>
+        <td><a href="https://www.youtube.com/?themeRefresh=1">Clique aqui para entrar no youtube</a></td>
+    </tr>
+    <tr>
+      <td id="abbr">&lt;abbr&gt;</td>
+      <td>abreviação sem tag abbr: HTML <br>
+          abreviação com tag abbr: <abbr title="HyperText Markup Language">HTML</abbr></td>
+      </td>
+    </tr>
+    <tr>
+      <td id="address">&lt;address&gt;</td>
+      <td>email sem tag address: example@gmail.com <br>
+        email com tag address: <address>example@gmail.com</address></td>
+    </tr>
+    <tr>
+      <td id="area">&lt;area&gt;</td>
+      <td><img src="./assets/workplace.jpg" alt="Workplace" usemap="#workmap" width="400" height="379">
+
+        <map name="workmap">
+          <area shape="rect" coords="34,44,270,350" alt="Computer"  href="https://www.amazon.com.br/b?node=16364755011">
+          <area shape="rect" coords="290,172,333,250" alt="Phone" href="https://www.magazineluiza.com.br/samsung-galaxy/celulares-e-smartphones/s/te/galx/?partner_id=77939&utm_source=bing&utm_medium=cpc&utm_campaign=bing_eco_per_ven_dsa_all_sor_4p_celularesesmartphones-template&utm_term=77939&utm_content=none_roa_amp_none_none_tod_none&&msclkid=1ed58c57cd3a15068b86eb6b0425389e&gclid=1ed58c57cd3a15068b86eb6b0425389e&gclsrc=3p.ds">
+          <area shape="circle" coords="337,300,44" alt="Cup of coffee" href="https://www.guiadasemana.com.br/gastronomia/galeria/melhores-cafeterias-sao-paulo">
+        </map>
+        </td>
+    </tr>
+    <tr>
+      <td id="article">&lt;article&gt;</td>
+      <td><article>
+        <h2>Google Chrome</h2>
+        <p>Google Chrome é um navegador web desenvolvido pelo Google que foi lançado em 2008.</p>
+        </article></td>
+    </tr>
+    <tr>
+      <td id="aside">&lt;aside&gt;</td>
+      <td><p>My family and I visited The Epcot center this summer. The weather was nice, and Epcot was amazing! I had a great summer together with my family!</p>
+
+        <aside>
+          <h4>Epcot Center</h4>
+          <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</p>
+        </aside></td>
+    </tr>
+    <tr>
+      <td id="audio">&lt;audio&gt;</td>
+      <td><audio controls><source src="./assets/ytmp3free.cc_creedence-clearwater-revival-fortunate-son-official-music-video-youtubemp3free.org.mp3" type="audio/mpeg">Creedence Clearwater Revival - Fortunate Son</audio></td>
+    </tr>
+    <tr>
+      <td id="b">&lt;b&gt;</td>
+      <td>Texto sem negrito: isso é um texto comum <br> Texto com negrito: <b>isso é um texto com negrito</b></td>
+    </tr>
+    <tr>
+      <td id="base">&lt;base&gt;</td>
+      <td>Todos os links dessa página abrem em uma nova aba devido ao target="_blank" que está na tag base, veja: <a href="https://developer.mozilla.org/pt-BR/">MDN Docs</a></td>
+    </tr>
+    <tr>
+      <td id="bdi">&lt;bdi&gt;</td>
+      <td> 
+      <ul>
+        <li>User <bdi>hrefs</bdi>: 60 points</li>
+        <li>User <bdi>jdoe</bdi>: 80 points</li>
+        <li>User <bdi>إيان</bdi>: 90 points</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td id="bdo">&lt;bdo&gt;</td>
+      <td><bdo dir="rtl">esse texto está ao contrário</bdo></td>
+    </tr>
+    <tr>
+      <td id="blockquote">&lt;blockquote&gt;</td>
+      <td><blockquote cite="https://www.wwf.org.br/sobrenos/institucional/">
+        Somos uma organização não-governamental brasileira e sem fins lucrativos que trabalha para mudar a atual trajetória de degradação ambiental e promover um futuro mais justo e saudável para todos, no qual sociedade e natureza vivam em harmonia. 
+      </blockquote></td>
+    </tr>
+    <tr>
+      <td id="body">&lt;body&gt;</td>
+      <td>Todos os conteúdos dessa página estão no body</td>
+    </tr>
+    <tr>
+      <td id="br">&lt;br&gt;</td>
+      <td><code>Frontend &lt;br&gt; é demais! =>  Frontend  </code> <code class="linha2"> <br> é demais!</code></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td id="button">&lt;button&gt;</td>
+      <td><button type="button">Clique em mim</button></td>
+    </tr>
+    <tr>
+      <td id="canvas">&lt;canvas&gt;</td>
+      <td><canvas id="myCanvas" style="border: 1px solid black;"></canvas>
+        <script>
+          const canvas = document.getElementById('myCanvas');
+          const context = canvas.getContext('2d');
+      
+          const centerX = canvas.width / 2;
+          const centerY = canvas.height / 2;
+          const radius = 50;
+      
+          // Drawing a circle
+          context.beginPath();
+          context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+          context.fillStyle = 'red';
+          context.fill();
+        </script></td>
+    </tr>
+    <tr>
+      <td id="caption">&lt;caption&gt;</td>
+      <td>
+        <table class="ex1">
+          <caption>Exemplo de tabela</caption>
+          <tr>
+            <th>Coluna 1</th>
+            <th>Coluna 2</th>
+          </tr>
+          <tr>
+            <td>Valor 1</td>
+            <td>Valor 2</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td id="cite">&lt;cite&gt;</td>
+      <td><img src="" alt=""></td>
+    </tr>
+    <tr>
+      <td id="code">&lt;code&gt;</td>
+      <td>Define um trecho de código de computador</td>
+    </tr>
+    <tr>
+      <td id="col">&lt;col&gt;</td>
+      <td>Especifica as propriedades das colunas dentro de um elemento &lt;colgroup&gt;</td>
+    </tr>
+    <tr>
+      <td id="colgroup">&lt;colgroup&gt;</td>
+      <td>Especifica um grupo de uma ou mais colunas em uma tabela para formatação</td>
+    </tr>
+    <tr>
+      <td id="data">&lt;data&gt;</td>
+      <td>Adiciona uma tradução legível por máquina de um determinado conteúdo</td>
+    </tr>
+    <tr>
+      <td id="datalist">&lt;datalist&gt;</td>
+      <td>Especifica uma lista de opções predefinidas para controles de entrada</td>
+    </tr>
+    <tr>
+      <td id="dd">&lt;dd&gt;</td>
+      <td>Define uma descrição/valor de um termo em uma lista de descrição</td>
+    </tr>
+    <tr>
+      <td id="del">&lt;del&gt;</td>
+      <td>Define texto que foi deletado de um documento</td>
+    </tr>
+    <tr>
+      <td id="details">&lt;details&gt;</td>
+      <td>Define detalhes adicionais que o usuário pode ver ou ocultar</td>
+    </tr>
+    <tr>
+      <td id="dfn">&lt;dfn&gt;</td>
+      <td>Especifica um termo que será definido dentro do conteúdo</td>
+    </tr>
+    <tr>
+      <td id="dialog">&lt;dialog&gt;</td>
+      <td>Define uma caixa de diálogo ou janela</td>
+    </tr>
+    <tr>
+      <td id="div">&lt;div&gt;</td>
+      <td>Define uma seção em um documento</td>
+    </tr>
+    <tr>
+      <td id="dl">&lt;dl&gt;</td>
+      <td>Define uma lista de descrições</td>
+    </tr>
+    <tr>
+      <td id="dt">&lt;dt&gt;</td>
+      <td>Define um termo/nome em uma lista de descrições</td>
+    </tr>
+    <tr>
+      <td id="em">&lt;em&gt;</td>
+      <td>Define texto enfatizado</td>
+    </tr>
+    <tr>
+      <td id="embed">&lt;embed&gt;</td>
+      <td>Define um contêiner para uma aplicação externa</td>
+    </tr>
+    <tr>
+      <td id="fieldset">&lt;fieldset&gt;</td>
+      <td>Agrupa elementos relacionados em um formulário</td>
+    </tr>
+    <tr>
+      <td id="figcaption">&lt;figcaption&gt;</td>
+      <td>Define uma legenda para um elemento &lt;figure&gt;</td>
+    </tr>
+    <tr>
+      <td id="figure">&lt;figure&gt;</td>
+      <td>Especifica conteúdo auto-contido</td>
+    </tr>
+    <tr>
+      <td id="footer">&lt;footer&gt;</td>
+      <td>Define um rodapé para um documento ou seção</td>
+    </tr>
+    <tr>
+      <td id="form">&lt;form&gt;</td>
+      <td>Define um formulário HTML para entrada de usuário</td>
+    </tr>
+    <tr>
+      <td id="hn">&lt;h1&gt; a &lt;h6&gt;</td>
+      <td>Define títulos HTML</td>
+    </tr>
+    <tr>
+      <td id="head">&lt;head&gt;</td>
+      <td>Contém metadados/informações para o documento</td>
+    </tr>
+    <tr>
+      <td id="header">&lt;header&gt;</td>
+      <td>Define um cabeçalho para um documento ou seção</td>
+    </tr>
+    <tr>
+      <td id="hgroup">&lt;hgroup&gt;</td>
+      <td>Define um cabeçalho e conteúdo relacionado</td>
+    </tr>
+    <tr>
+      <td id="hr">&lt;hr&gt;</td>
+      <td>Define uma mudança temática no conteúdo</td>
+    </tr>
+    <tr>
+      <td id="html">&lt;html&gt;</td>
+      <td>Define a raiz de um documento HTML</td>
+    </tr>
+    <tr>
+      <td id="i">&lt;i&gt;</td>
+      <td>Define uma parte de texto em voz ou humor alternativo</td>
+    </tr>
+    <tr>
+      <td id="iframe">&lt;iframe&gt;</td>
+      <td>Define um quadro embutido (inline)</td>
+    </tr>
+    <tr>
+      <td id="img">&lt;img&gt;</td>
+      <td>Define uma imagem</td>
+    </tr>
+    <tr>
+      <td id="input">&lt;input&gt;</td>
+      <td>Define um controle de entrada</td>
+    </tr>
+    <tr>
+      <td id="ins">&lt;ins&gt;</td>
+      <td>Define texto que foi inserido em um documento</td>
+    </tr>
+    <tr>
+      <td id="kbd">&lt;kbd&gt;</td>
+      <td>Define a entrada do teclado</td>
+    </tr>
+    <tr>
+      <td id="label">&lt;label&gt;</td>
+      <td>Define um rótulo para um elemento &lt;input&gt;</td>
+    </tr>
+    <tr>
+      <td id="legend">&lt;legend&gt;</td>
+      <td>Define uma legenda para um elemento &lt;fieldset&gt;</td>
+    </tr>
+    <tr>
+      <td id="li">&lt;li&gt;</td>
+      <td>Define um item de lista</td>
+    </tr>
+    <tr>
+      <td id="link">&lt;link&gt;</td>
+      <td>Define o relacionamento entre um documento e um recurso externo (mais utilizado para vincular folhas de estilo)</td>
+    </tr>
+    <tr>
+      <td id="main">&lt;main&gt;</td>
+      <td>Especifica o conteúdo principal de um documento</td>
+    </tr>
+    <tr>
+      <td id="map">&lt;map&gt;</td>
+      <td>Define um mapa de imagem</td>
+    </tr>
+    <tr>
+      <td id="mark">&lt;mark&gt;</td>
+      <td>Define texto destacado</td>
+    </tr>
+    <tr>
+      <td id="menu">&lt;menu&gt;</td>
+      <td>Define uma lista não ordenada</td>
+    </tr>
+    <tr>
+      <td id="meta">&lt;meta&gt;</td>
+      <td>Define metadados sobre um documento HTML</td>
+    </tr>
+    <tr>
+      <td id="meter">&lt;meter&gt;</td>
+      <td>Define uma medição escalar dentro de um intervalo conhecido (um medidor)</td>
+    </tr>
+    <tr>
+      <td id="nav">&lt;nav&gt;</td>
+      <td>Define links de navegação</td>
+    </tr>
+    <tr>
+      <td id="noscript">&lt;noscript&gt;</td>
+      <td>Define conteúdo alternativo para usuários que não suportam scripts do lado do cliente</td>
+    </tr>
+    <tr>
+      <td id="object">&lt;object&gt;</td>
+      <td>Define um contêiner para uma aplicação externa</td>
+    </tr>
+    <tr>
+      <td id="ol">&lt;ol&gt;</td>
+      <td>Define uma lista ordenada</td>
+    </tr>
+    <tr>
+      <td id="optgroup">&lt;optgroup&gt;</td>
+      <td>Define um grupo de opções relacionadas em uma lista suspensa</td>
+    </tr>
+    <tr>
+      <td id="option">&lt;option&gt;</td>
+      <td>Define uma opção em uma lista suspensa</td>
+    </tr>
+    <tr>
+      <td id="output">&lt;output&gt;</td>
+      <td>Define o resultado de um cálculo</td>
+    </tr>
+    <tr>
+      <td id="p">&lt;p&gt;</td>
+      <td>Define um parágrafo</td>
+    </tr>
+    <tr>
+      <td id="param">&lt;param&gt;</td>
+      <td>Define um parâmetro para um objeto</td>
+    </tr>
+    <tr>
+      <td id="picture">&lt;picture&gt;</td>
+      <td>Define um contêiner para múltiplos recursos de imagem</td>
+    </tr>
+    <tr>
+      <td id="pre">&lt;pre&gt;</td>
+      <td>Define texto pré-formatado</td>
+    </tr>
+    <tr>
+      <td id="progress">&lt;progress&gt;</td>
+      <td>Representa o progresso de uma tarefa</td>
+    </tr>
+    <tr>
+      <td id="q">&lt;q&gt;</td>
+      <td>Define uma citação curta</td>
+    </tr>
+    <tr>
+      <td id="rp">&lt;rp&gt;</td>
+      <td>Define o que mostrar em navegadores que não suportam anotações Ruby</td>
+    </tr>
+    <tr>
+      <td id="rt">&lt;rt&gt;</td>
+      <td>Define uma explicação/pronúncia de caracteres (para tipografia asiática)</td>
+    </tr>
+    <tr>
+      <td id="ruby">&lt;ruby&gt;</td>
+      <td>Define uma anotação ruby (para tipografia asiática)</td>
+    </tr>
+    <tr>
+      <td id="s">&lt;s&gt;</td>
+      <td>Define texto que não está mais correto</td>
+    </tr>
+    <tr>
+      <td id="samp">&lt;samp&gt;</td>
+      <td>Define a saída de exemplo de um programa de computador</td>
+    </tr>
+    <tr>
+      <td id="script">&lt;script&gt;</td>
+      <td>Define um script do lado do cliente</td>
+    </tr>
+    <tr>
+      <td id="search">&lt;search&gt;</td>
+      <td>Define uma seção de pesquisa</td>
+    </tr>
+    <tr>
+      <td id="section">&lt;section&gt;</td>
+      <td>Define uma seção em um documento</td>
+    </tr>
+    <tr>
+      <td id="select">&lt;select&gt;</td>
+      <td>Define uma lista suspensa</td>
+    </tr>
+    <tr>
+      <td id="small">&lt;small&gt;</td>
+      <td>Define texto menor</td>
+    </tr>
+    <tr>
+      <td id="source">&lt;source&gt;</td>
+      <td>Define múltiplos recursos de mídia para elementos de mídia (&lt;video&gt; e &lt;audio&gt;)</td>
+    </tr>
+    <tr>
+      <td id="span">&lt;span&gt;</td>
+      <td>Define uma seção em um documento</td>
+    </tr>
+    <tr>
+      <td id="strong">&lt;strong&gt;</td>
+      <td>Define texto importante</td>
+    </tr>
+    <tr>
+      <td id="style">&lt;style&gt;</td>
+      <td>Define informações de estilo para um documento</td>
+    </tr>
+    <tr>
+      <td id="sub">&lt;sub&gt;</td>
+      <td>Define texto subscrito</td>
+    </tr>
+    <tr>
+      <td id="summary">&lt;summary&gt;</td>
+      <td>Define um título visível para um elemento &lt;details&gt;</td>
+    </tr>
+    <tr>
+      <td id="sup">&lt;sup&gt;</td>
+      <td>Define texto sobrescrito</td>
+    </tr>
+    <tr>
+      <td id="svg">&lt;svg&gt;</td>
+      <td>Define um contêiner para gráficos SVG</td>
+    </tr>
+    <tr>
+      <td id="table">&lt;table&gt;</td>
+      <td>Define uma tabela</td>
+    </tr>
+    <tr>
+      <td id="tbody">&lt;tbody&gt;</td>
+      <td>Agrupa o conteúdo do corpo de uma tabela</td>
+    </tr>
+    <tr>
+      <td id="td">&lt;td&gt;</td>
+      <td>Define uma célula em uma tabela</td>
+    </tr>
+    <tr>
+      <td id="template">&lt;template&gt;</td>
+      <td>Define um contêiner para conteúdo que deve ser ocultado quando a página é carregada</td>
+    </tr>
+    <tr>
+      <td id="textarea">&lt;textarea&gt;</td>
+      <td>Define um controle de entrada multilinha (área de texto)</td>
+    </tr>
+    <tr>
+      <td id="tfoot">&lt;tfoot&gt;</td>
+      <td>Agrupa o conteúdo do rodapé em uma tabela</td>
+    </tr>
+    <tr>
+      <td id="th">&lt;th&gt;</td>
+      <td>Define uma célula de cabeçalho em uma tabela</td>
+    </tr>
+    <tr>
+      <td id="thead">&lt;thead&gt;</td>
+      <td>Agrupa o conteúdo do cabeçalho em uma tabela</td>
+    </tr>
+    <tr>
+      <td id="time">&lt;time&gt;</td>
+      <td>Define um tempo específico (ou data/hora)</td>
+    </tr>
+    <tr>
+      <td id="title">&lt;title&gt;</td>
+      <td>Define o título do documento</td>
+    </tr>
+    <tr>
+      <td id="tr">&lt;tr&gt;</td>
+      <td>Define uma linha em uma tabela</td>
+    </tr>
+    <tr>
+      <td id="track">&lt;track&gt;</td>
+      <td>Define faixas de texto para elementos de mídia (&lt;video&gt; e &lt;audio&gt;)</td>
+    </tr>
+    <tr>
+      <td id="u">&lt;u&gt;</td>
+      <td>Define texto não articulado e estilizado de maneira diferente do texto normal</td>
+    </tr>
+    <tr>
+      <td id="ul">&lt;ul&gt;</td>
+      <td>Define uma lista não ordenada</td>
+    </tr>
+    <tr>
+      <td id="var">&lt;var&gt;</td>
+      <td>Define uma variável</td>
+    </tr>
+    <tr>
+      <td id="video">&lt;video&gt;</td>
+      <td>Define conteúdo de vídeo embutido</td>
+    </tr>
+    <tr>
+      <td id="wbr">&lt;wbr&gt;</td>
+      <td>Define uma possível quebra de linha</td>
+    </tr>
+  </table>
+</div>
+  
+</div>
+</body>
+</html>

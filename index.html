@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extrator de Tabelas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    input, button {
+      margin: 5px 0;
+      padding: 8px;
+      font-size: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    h2{
+      margin: 30px 0;
+    }
+    h3{
+      margin: 20px 0 5px 0;
+    }
+    hr{
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Glossário HTML</h1>
+  <button id="puxaTabelas">Puxar Exemplos</button>
+  <div id="output"></div>
+  <div id="links-output" class="link-list"></div>
+
+  <script>
+document.getElementById('puxaTabelas').addEventListener('click', async () => {
+  try {
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const baseUrl = 'https://www.w3schools.com/tags/tag_';
+    const tags = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'hn', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'menu', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'search', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'svg', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr'];
+    const urls = tags.map(word => `${baseUrl}${word}.asp`);
+
+    const initialUrl = 'https://www.w3schools.com/tags';
+    const initialResponse = await fetch(proxyUrl + initialUrl);
+    const initialHtml = await initialResponse.text();
+
+    const initialParser = new DOMParser();
+    const initialDoc = initialParser.parseFromString(initialHtml, 'text/html');
+    const initialTable = initialDoc.querySelector('table');
+
+    if (!initialTable) {
+      alert('Nenhuma tabela encontrada na página inicial.');
+      return;
+    }
+
+    const rows = Array.from(initialTable.querySelectorAll('tr'));
+    const data = rows.map(row => {
+      const cells = Array.from(row.querySelectorAll('td, th'));
+      return cells.map(cell => cell.innerText.trim());
+    });
+
+    const output = document.getElementById('output');
+    output.innerHTML = '';
+    const displayTable = document.createElement('table');
+
+    data.forEach((row, rowIndex) => {
+      const tr = document.createElement('tr');
+      row.forEach(cellText => {
+        const cell = rowIndex === 0 ? document.createElement('th') : document.createElement('td');
+        cell.textContent = cellText;
+        tr.appendChild(cell);
+      });
+      displayTable.appendChild(tr);
+    });
+
+    output.appendChild(displayTable);
+
+    const dynamicTables = await Promise.all(
+      urls.map(async url => {
+        try {
+          const response = await fetch(proxyUrl + url);
+          const html = await response.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const table = doc.querySelector('.w3-code.notranslate.htmlHigh:not(.w3-border)');
+          return table ? table.outerHTML : null;
+        } catch (error) {
+          console.error(`Erro ao acessar a URL: ${url}`, error);
+          return null;
+        }
+      })
+    );
+
+    const subtitle = document.createElement('div');
+    subtitle.innerHTML = `<h2>Exemplos</h2>`;
+    output.appendChild(subtitle);
+
+    dynamicTables.forEach((tableHTML, index) => {
+      if (tableHTML) {
+        const tableContainer = document.createElement('div');
+        
+        tableContainer.innerHTML += `<h3>Exemplo da tag ${tags[index]}</h3>`;
+        
+        tableHTML = Regex(tableHTML);
+        
+        console.log(tableHTML)
+        // Criar o iframe
+        const iframe = document.createElement('iframe');
+        iframe.style.width = '100%';
+        iframe.style.height = '300px';
+        iframe.style.border = '1px solid #ccc';
+        iframe.setAttribute("src", "data:text/html;charset=utf-8," + encodeURIComponent(tableHTML));
+
+        // Adicionar o iframe à página
+        tableContainer.appendChild(iframe);
+        output.appendChild(tableContainer);
+      }
+    });
+  } catch (error) {
+    console.error('Erro ao acessar a URL inicial:', error);
+    alert('Ocorreu um erro ao tentar acessar a URL. Verifique se ela está correta.');
+  }
+});
+
+function Regex(html) {
+  const entityMap = {
+    '&lt;': '<',
+    '&gt;': '>',
+    '&amp;': '&',
+    '&quot;': '"',
+    '&#39;': "'",
+    '&nbsp;': ' '
+  };
+
+  // Replace HTML entities with their respective characters
+  html = html.replace(/&lt;|&gt;|&amp;|&quot;|&#39;|&nbsp;/g, match => entityMap[match]);
+  html = html.replace("&lt;script&gt;&lt;br&gt;",'&gt;')
+    
+
+  return html;
+}
+
+
+
+</script>
+</body>
+</html>
